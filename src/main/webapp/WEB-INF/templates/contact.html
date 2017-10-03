@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
+      layout:decorator="layouts/blog">
+
+<head>
+    <title>Blog — Contact Us</title>
+
+</head>
+
+<body>
+
+ <section layout:fragment="content">
+    <h2>Contact Us</h2>
+<section class="col-sm-8">
+
+            <div class="col-padding">
+                <section id="pageContent" layout:fragment="content">
+	<p>
+     If you have any comments, questions, concerns, or to inquire about our product and services please feel free to contact us at</p>
+		<p>Email :	getankios@gmail.com
+    </p>
+                </section>
+            </div>
+        </section>
+
+    
+</section>
+
+
+
+
+
+
+<!-- <section layout:fragment="content">
+    <h2>Contact Us</h2>
+<section class="col-sm-8">
+
+            <div class="col-padding">
+                <section id="pageContent" layout:fragment="content">
+
+<form action="mailto:krati.mittal36@gmail.com" method="post" enctype="text/plain">
+
+ <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"/>
+                    </div>
+                    
+   <div class="form-group">
+                        <label for="mail">E-mail:</label>
+                        <input type="text" class="form-control" id="mail" name="mail"/>
+                    </div>
+                    
+    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <input type="text" class="form-control" id="comment" name="comment"/>
+                    </div>
+
+<button type="submit" class="btn btn-default">Send</button>
+<button type="reset" class="btn btn-default">Reset</button>
+
+</form>
+</section>
+            </div>
+        </section>
+
+    
+</section> -->
+
+</body>
+</html>
