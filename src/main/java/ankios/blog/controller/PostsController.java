@@ -108,10 +108,7 @@ public class PostsController {
             post.setTitle(StringEscapeUtils.unescapeJava( post.getTitle() ));
         
         
-        if (post == null)
-            throw new ResourceNotFoundException();
-
-        if (post.isHidden() && !userService.isAdmin())
+        if (post==null ||(post.isHidden() && !userService.isAdmin()))
             throw new ResourceNotFoundException();
 
         model.addAttribute("post", post);
