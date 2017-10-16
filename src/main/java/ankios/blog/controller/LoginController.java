@@ -1,8 +1,8 @@
 package ankios.blog.controller;
 
+import ankios.blog.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,7 +19,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login_success", method= RequestMethod.GET)
     public @ResponseBody String loginSuccess(HttpServletRequest request) {
-        return "ok";
+        return StringUtils.OK;
     }
 
     @RequestMapping(value = "/login_error", method= RequestMethod.GET)

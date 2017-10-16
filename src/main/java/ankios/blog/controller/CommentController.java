@@ -5,6 +5,7 @@ import ankios.blog.model.Post;
 import ankios.blog.service.*;
 import ankios.blog.utils.JsonUtils;
 
+import ankios.blog.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -76,7 +77,7 @@ public class CommentController {
             return "expired";
         }
 
-        return "ok";
+        return StringUtils.OK;
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -93,7 +94,7 @@ public class CommentController {
             return "expired";
         }
 
-        return "ok";
+        return StringUtils.OK;
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -120,7 +121,7 @@ public class CommentController {
             return "own_comment";
         }
 
-        return "ok";
+        return StringUtils.OK;
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -135,7 +136,7 @@ public class CommentController {
             return "own_comment";
         }
 
-        return "ok";
+        return StringUtils.OK;
     }
 
     private String makeCommentAddResponse(String status, String msg, Long id) {
