@@ -9,17 +9,11 @@ public class LocalDateTimePersistenceConverter implements AttributeConverter<Loc
 
     @Override
     public java.sql.Timestamp convertToDatabaseColumn(LocalDateTime entityValue) {
-        if (entityValue != null) {
-            return java.sql.Timestamp.valueOf(entityValue);
-        }
-        return null;
+        return entityValue != null ? java.sql.Timestamp.valueOf(entityValue) : null;
     }
 
     @Override
     public LocalDateTime convertToEntityAttribute(java.sql.Timestamp databaseValue) {
-        if (databaseValue != null) {
-            return databaseValue.toLocalDateTime();
-        }
-        return null;
+        return databaseValue != null ? databaseValue.toLocalDateTime() : null;
     }
 }
