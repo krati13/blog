@@ -50,14 +50,15 @@ public class CommentController {
     public @ResponseBody String addComment(@Valid @ModelAttribute(value = "comment") Comment comment, BindingResult result,
                                            @PathVariable("postId") Long postId,
                                            @RequestParam(value = "parentId", defaultValue = "") Long parentId) {
-        if (result.hasErrors()) {
+        if (result!=null && result.hasErrors()) {
             return makeCommentAddResponse("error", result.getAllErrors().get(0).getDefaultMessage());
         }
 
         Post post = postService.getPost(postId);
 
-        if (post == null)
+        if (post == null){
             return makeCommentAddResponse("error", "post not found");
+        }
 
         if (post.isHidden() && !userService.isAdmin())
             return makeCommentAddResponse("error", "post not found");
