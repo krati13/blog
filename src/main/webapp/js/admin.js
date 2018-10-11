@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var postsContainer = $("#postsContainer");
+    var postsContainer = $('#postsContainer');
 
     postsContainer.on('click', 'a[data-action="hidePost"]', function(event){
         event.preventDefault();
