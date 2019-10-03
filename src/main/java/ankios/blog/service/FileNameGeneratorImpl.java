@@ -7,6 +7,11 @@ import org.springframework.stereotype.Service;
 public class FileNameGeneratorImpl implements FileNameGenerator {
     @Override
     public String getFileName(String filename, String prefix) {
-       return prefix+filename.hashCode()+System.currentTimeMillis();
+
+        StringBuilder sb=new StringBuilder();
+        sb.append(prefix);
+        sb.append(filename.hashCode() );
+        sb.append(System.currentTimeMillis());
+        return sb.toString();
     }
 }

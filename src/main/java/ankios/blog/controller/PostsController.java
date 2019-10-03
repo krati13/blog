@@ -9,6 +9,7 @@ import ankios.blog.service.PostService;
 import ankios.blog.service.UserService;
 import ankios.blog.utils.JsonUtils;
 
+import ankios.blog.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -49,7 +50,7 @@ public class PostsController {
         if (currentUser != null)
             model.addAttribute("userId", currentUser.getId());
 
-        return "posts";
+        return StringUtils.POSTS;
     }
 
     
@@ -94,7 +95,7 @@ public class PostsController {
         if (currentUser != null)
             model.addAttribute("userId", currentUser.getId());
 
-        return "posts";
+        return StringUtils.POSTS;
     }
 
     @RequestMapping(value = "/posts/{postId}", method = RequestMethod.GET)
@@ -108,10 +109,7 @@ public class PostsController {
             post.setTitle(StringEscapeUtils.unescapeJava( post.getTitle() ));
         
         
-        if (post == null)
-            throw new ResourceNotFoundException();
-
-        if (post.isHidden() && !userService.isAdmin())
+        if (post==null ||(post.isHidden() && !userService.isAdmin()))
             throw new ResourceNotFoundException();
 
         model.addAttribute("post", post);
@@ -135,7 +133,7 @@ public class PostsController {
 
         model.addAttribute("edit", false);
 
-        return "editpost";
+        return StringUtils.EDIT_POST;
     }
 
     /*@PreAuthorize("hasRole('ROLE_ADMIN')")*/
@@ -144,7 +142,7 @@ public class PostsController {
         if (result.hasErrors()) {
             model.addAttribute("edit", false);
 
-            return "editpost";
+            return StringUtils.EDIT_POST;
         }
 
         postService.saveNewPost(post);
@@ -172,7 +170,7 @@ public class PostsController {
 
         model.addAttribute("edit", true);
 
-        return "editpost";
+        return StringUtils.EDIT_POST;
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -184,7 +182,7 @@ public class PostsController {
         if (result.hasErrors()) {
             model.addAttribute("edit", true);
 
-            return "editpost";
+            return StringUtils.EDIT_POST;
         }
 
         postService.updatePost(post);
@@ -197,7 +195,7 @@ public class PostsController {
     public @ResponseBody String hidePost(@PathVariable("postId") Long postId) {
         postService.setPostVisibility(postId, true);
 
-        return "ok";
+        return StringUtils.OK;
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -205,7 +203,7 @@ public class PostsController {
     public @ResponseBody String unhidePost(@PathVariable("postId") Long postId) {
         postService.setPostVisibility(postId, false);
 
-        return "ok";
+        return StringUtils.OK;
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -213,7 +211,7 @@ public class PostsController {
     public @ResponseBody String deletePost(@PathVariable("postId") Long postId) {
         postService.deletePost(postId);
 
-        return "ok";
+        return StringUtils.OK;
     }
 
     private String toJsonLink(Post post) {
@@ -229,7 +227,7 @@ public class PostsController {
             return "already_voted";
         }
 
-        return "ok";
+        return StringUtils.OK;
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -241,7 +239,7 @@ public class PostsController {
             return "already_voted";
         }
 
-        return "ok";
+        return StringUtils.OK;
     }
     
     

@@ -5,6 +5,7 @@ import ankios.blog.model.Post;
 import ankios.blog.service.*;
 import ankios.blog.utils.JsonUtils;
 
+import ankios.blog.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -50,14 +51,15 @@ public class CommentController {
     public @ResponseBody String addComment(@Valid @ModelAttribute(value = "comment") Comment comment, BindingResult result,
                                            @PathVariable("postId") Long postId,
                                            @RequestParam(value = "parentId", defaultValue = "") Long parentId) {
-        if (result.hasErrors()) {
+        if (result!=null && result.hasErrors()) {
             return makeCommentAddResponse("error", result.getAllErrors().get(0).getDefaultMessage());
         }
 
         Post post = postService.getPost(postId);
 
-        if (post == null)
+        if (post == null){
             return makeCommentAddResponse("error", "post not found");
+        }
 
         if (post.isHidden() && !userService.isAdmin())
             return makeCommentAddResponse("error", "post not found");
@@ -76,7 +78,7 @@ public class CommentController {
             return "expired";
         }
 
-        return "ok";
+        return StringUtils.OK;
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -93,7 +95,7 @@ public class CommentController {
             return "expired";
         }
 
-        return "ok";
+        return StringUtils.OK;
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -120,7 +122,7 @@ public class CommentController {
             return "own_comment";
         }
 
-        return "ok";
+        return StringUtils.OK;
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -135,7 +137,7 @@ public class CommentController {
             return "own_comment";
         }
 
-        return "ok";
+        return StringUtils.OK;
     }
 
     private String makeCommentAddResponse(String status, String msg, Long id) {
