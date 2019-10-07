@@ -35,7 +35,7 @@ public class CommentController {
         if (post == null)
             throw new ResourceNotFoundException();
 
-        if (post.isHidden() && !userService.isAdmin())
+        if (post.isHidden() && userService.isAdmin() == false)
             throw new ResourceNotFoundException();
 
         List<Comment> comments = post.topLevelComments();
@@ -154,9 +154,4 @@ public class CommentController {
     private String makeCommentAddResponse(String status, String msg) {
         return makeCommentAddResponse(status, msg, null);
     }
-
-    private String makeCommentAddResponse(String status) {
-        return makeCommentAddResponse(status, null, null);
-    }
-
 }
