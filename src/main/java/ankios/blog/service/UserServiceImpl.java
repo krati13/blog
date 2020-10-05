@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
     public void changeEmail(String newEmail, String currentPassword) throws AuthException {
         User user = currentUser();
         if (!passwordEncoder.matches(currentPassword, user.getPassword()))
-            throw new AuthException("password does not match");
+            throw new AuthException("password does not match. Please try again");
 
         user.setEmail(newEmail);
 
