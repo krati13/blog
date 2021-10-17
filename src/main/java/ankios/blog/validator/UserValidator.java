@@ -15,6 +15,8 @@ public class UserValidator implements Validator {
     @Autowired
     UserService userService;
 
+
+    // checks if argument class type is User.class
     @Override
     public boolean supports(Class<?> aClass) {
         return User.class.equals(aClass);
