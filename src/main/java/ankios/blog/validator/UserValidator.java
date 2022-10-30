@@ -22,6 +22,7 @@ public class UserValidator implements Validator {
         return User.class.equals(aClass);
     }
 
+     // validate user name and email id
     @Override
     public void validate(Object o, Errors errors) {
         User user = (User) o;
