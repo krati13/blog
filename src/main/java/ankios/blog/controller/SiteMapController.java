@@ -50,7 +50,7 @@ public class SiteMapController {
 	 */
 	@RequestMapping(value = "/sitemap.xml", method = RequestMethod.GET)
 	public void getSitemap(final HttpServletRequest request, final HttpServletResponse response) throws IOException, JAXBException {
-		logger.debug("Start downloading sitemap.xml...");
+		logger.debug("...Start downloading sitemap.xml...");
 		InputStream inputStream = null;
 		try {
 			inputStream = new ClassPathResource("sitemap.xml").getInputStream(); // read file
