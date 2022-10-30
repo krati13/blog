@@ -17,11 +17,13 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    // login success GET method
     @RequestMapping(value = "/login_success", method= RequestMethod.GET)
     public @ResponseBody String loginSuccess(HttpServletRequest request) {
         return StringUtils.OK;
     }
 
+     // login error GET method
     @RequestMapping(value = "/login_error", method= RequestMethod.GET)
     public @ResponseBody String loginError(HttpServletRequest request) {
         return "failed";
